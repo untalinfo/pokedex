@@ -1,0 +1,94 @@
+{
+  "name": "template-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
+    "@reduxjs/toolkit": "^1.8.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-legacy": "^4.1.1",
+    "@vitejs/plugin-react": "^3.1.0",
+    "babel-polyfill": "^6.26.0",
+    "history": "^4.10.1",
+    "jsdom": "^21.1.1",
+    "modern-normalize": "^1.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.9.0",
+    "react-i18next": "^12.2.0",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "5.3.1",
+    "redux": "^4.1.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1",
+    "remixicon": "^2.5.0",
+    "sass": "^1.49.9",
+    "vite": "^4.2.1",
+    "vite-plugin-env-compatible": "^1.1.1",
+    "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.30.1",
+    "web-vitals": "^1.0.1",
+    "yup": "^0.32.11"
+  },
+  "lint-staged": {
+    "src/**/*.{jsx,js,md,ts,graphql,yml,yaml,json}": [
+      "npm run test:staged",
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,css}": "prettier --write"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "GENERATE_SOURCEMAP=false vite build",
+    "preview": "vite preview",
+    "test": "react-scripts test",
+    "eject": "vite eject",
+    "test:staged": "cross-env CI=true react-scripts test --env=jsdom --findRelatedTests",
+    "coverage": "yarn test --coverage --watchAll=false --passWithNoTests",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^8.0.3",
+    "inquirer": "^9.2.11",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1",
+    "react-scripts": "^5.0.1",
+    "redux-mock-store": "^1.5.4",
+    "terser": "^5.20.0"
+  }
+}
