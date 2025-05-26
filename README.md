@@ -1,8 +1,17 @@
-# Folder structure for frontend projects
+# Pokedex - Frontend Project
 
-This structure was created based on [this article](https://dev.to/kpiteng/react-clean-architecture-114f)
+Este proyecto es una aplicación frontend basada en React que sigue una arquitectura limpia, usando la API de https://pokeapi.co/. Está diseñada para ser una base reutilizable para aplicaciones frontend modernas.
 
-This repository works as the basis for any frontend application in react. includes husky, lint-staged, eslint, prettier, testing library, editorconfig, node-sass, react-router-dom, react-redux, reduxjs / toolkit, redux-logger and redux-thunk
+## Tecnologías incluidas
+
+- **React**: Biblioteca para construir interfaces de usuario.
+- **Redux Toolkit**: Manejo del estado global.
+- **React Router DOM**: Enrutamiento para aplicaciones de una sola página.
+- **SASS**: Preprocesador CSS para estilos avanzados.
+- **Husky y lint-staged**: Para mantener la calidad del código en los commits.
+- **Prettier y ESLint**: Para formateo y linting del código.
+
+## Estructura del proyecto
 
 ```
 src
@@ -27,15 +36,51 @@ src
 |--- shared/
 ```
 
-## Caveats
+## Requisitos previos
 
-### After cloning this repository
-Follow the next steps:
-1. Change the `name` attribute in the `package.json` file.
-2. Replace or delete the `exampleDomain` and it's contents located in the domains folder.
-   1. Be sure to rename/remove the example slice in the `src/shared/store/reducers.js` file.
-   2. Also, guarantee to rename/remove the `exampleRouter` in the `src/shared/presentation/Router.js`.
-   3. DO NOT LEAVE ANY EXAMPLE CONTENT in the cloned project.
-3. Change the meta and title information in the `public/index.html`
+Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
-***Last updated: 12/05/2024***
+- **Node.js** (versión 16.x o superior)
+- **Yarn** (opcional, pero recomendado)
+
+## Instrucciones para correr el proyecto en local
+
+1. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/tu-usuario/pokedex.git
+   cd pokedex
+   ```
+
+2. **Instalar dependencias**:
+   ```bash
+   yarn install
+   ```
+
+3. **Configurar variables de entorno**:
+   Crea un archivo `.env` en la raíz del proyecto y define las variables necesarias. Por ejemplo:
+   ```
+   REACT_APP_URL_PROD=https://pokeapi.co/api/v2/
+   ```
+
+4. **Iniciar el servidor de desarrollo**:
+   ```bash
+   yarn start
+   ```
+
+   Esto abrirá la aplicación en `http://localhost:3000`.
+
+5. **Construir para producción**:
+   Si deseas generar una versión optimizada para producción, ejecuta:
+   ```bash
+   yarn build
+   ```
+
+6. **Ejecutar pruebas**:
+   Para correr las pruebas unitarias:
+   ```bash
+   yarn test
+   ```
+
+## Última actualización
+
+**12/05/2024**
