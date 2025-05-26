@@ -69,17 +69,17 @@ const PokemonDetailPage = () => {
 					)}
 				</div>
 				<div className="pokemon-info">
-					<h2>Información</h2>
-					<p>
+					<h2 className="info-subtitle">Información</h2>
+					<p className="pokemon-info">
 						<strong>ID:</strong> {pokemon.id}
 					</p>
-					<p>
+					<p className="pokemon-info">
 						<strong>Altura:</strong> {pokemon.height / 10} m
 					</p>
-					<p>
+					<p className="pokemon-info">
 						<strong>Peso:</strong> {pokemon.weight / 10} kg
 					</p>
-					<p>
+					<p className="types-info pokemon-info">
 						<strong>Tipos:</strong>{' '}
 						{pokemon.types.map((typeInfo) => (
 							<span key={typeInfo.type.name} className={`type-badge type-${typeInfo.type.name}`}>
@@ -87,21 +87,26 @@ const PokemonDetailPage = () => {
 							</span>
 						))}
 					</p>
-					<h3>Habilidades:</h3>
-					<ul>
+					<h3 className="abilities-subtitle">Habilidades:</h3>
+					<section className="abilities-section">
 						{pokemon.abilities.map((abilityInfo) => (
-							<li key={abilityInfo.ability.name}>{abilityInfo.ability.name}</li>
+							<div key={abilityInfo.ability.name} className="abiliti-item">
+								{abilityInfo.ability.name}
+							</div>
 						))}
-					</ul>
-					<h3>Estadísticas Base:</h3>
+					</section>
+					<h3 className="stats-subtible">Estadísticas Base:</h3>
 					<ul className="stats-list">
 						{pokemon.stats.map((statInfo) => (
 							<li key={statInfo.stat.name} className="stat-item">
-								<span className="stat-name">{statInfo.stat.name}</span>
+								<div className="stat-info">
+									<span className="stat-name">{statInfo.stat.name}</span>
+									<span className="stat-value">{statInfo.base_stat}</span>
+								</div>
+
 								<div className="stat-bar-container">
 									<div className="stat-bar" style={{ width: `${(statInfo.base_stat / 255) * 100}%` }}></div>
 								</div>
-								<span className="stat-value">{statInfo.base_stat}</span>
 							</li>
 						))}
 					</ul>
