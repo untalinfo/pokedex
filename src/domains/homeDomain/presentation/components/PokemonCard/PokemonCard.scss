@@ -1,0 +1,34 @@
+@import '../../../../../shared/application/theme/colors.scss';
+
+.pokemon-card {
+	width: 176px;
+	height: 224px;
+
+	> .pokemon-link {
+		text-transform: none;
+		> .container-img {
+			@extend .bg-tertiary;
+			width: 176px;
+			height: 176px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 8px;
+
+			> .img {
+				width: 100%;
+				height: auto;
+				object-fit: contain;
+			}
+		}
+
+		> .pokemon-name {
+			@extend .color-primary;
+			width: 100%;
+			font-size: 16px;
+			font-weight: 500;
+			margin-top: 8px;
+			text-decoration: none;
+		}
+	}
+}

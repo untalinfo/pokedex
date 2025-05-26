@@ -1,0 +1,13 @@
+@import '../../../../../shared/application/theme/colors.scss';
+
+.type-filter-pokemon {
+	@extend .bg-tertiary;
+	@extend .color-secondary;
+	display: flex;
+	flex-direction: column;
+	width: max-content;
+	height: min-content;
+	margin-top: 20px;
+	padding: 12px;
+	border-radius: 8px;
+}
