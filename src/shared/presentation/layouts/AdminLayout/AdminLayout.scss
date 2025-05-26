@@ -1,2 +1,28 @@
+@import '../../../application/theme/colors.scss';
+
 .admin-layout {
+	width: 100%;
+	height: 100%;
+
+	> .header-container {
+		@extend .bg-white;
+		@extend .color-primary;
+		@extend .border-secondary-300t;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		width: 100%;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		column-gap: 20px;
+		padding: 0 20px;
+
+		> .img-header {
+			width: 40px;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
 }
