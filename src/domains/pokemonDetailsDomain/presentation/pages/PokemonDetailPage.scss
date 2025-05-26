@@ -32,6 +32,7 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 20px;
+		width: 80dvw;
 
 		> .pokemon-images-carousel {
 			> .carousel {
@@ -64,63 +65,95 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 10px;
+			width: 100%;
 
-			> .pokemon-type {
-				font-weight: bold;
-				color: var(--color-secondary);
+			> .info-subtitle,
+			> .stats-subtible,
+			> .abilities-subtitle {
+				align-self: flex-start;
 			}
 
-			> .pokemon-stats {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 5px;
+			> .pokemon-info {
+				align-self: flex-start;
+				padding-left: 10px;
+			}
 
-				> span {
-					font-size: 14px;
-					color: var(--color-secondary-700s);
+			> .types-info {
+				display: flex;
+				align-items: center;
+				// justify-content: center;
+				gap: 10px;
+				width: 100%;
+
+				> .type-item {
+					@extend .bg-secondary-500t;
+					border-radius: 5px;
+					padding: 10px;
+					flex-grow: 1;
+					text-align: center;
+					font-weight: bold;
+					width: max-content;
+				}
+			}
+
+			> .abilities-section {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				width: 100%;
+				padding: 0 10px;
+
+				> .abiliti-item {
+					@extend .bg-secondary-500t;
+					border-radius: 5px;
+					padding: 10px;
+					flex-grow: 1;
+					text-align: center;
+					font-weight: bold;
+					width: max-content;
+				}
+			}
+
+			> .stats-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				padding: 0 10px;
+
+				> .stat-item {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					margin-bottom: 10px;
+					row-gap: 10px;
+
+					> .stat-info {
+						display: flex;
+						justify-content: space-between;
+						width: 100%;
+						align-items: center;
+						padding: 0 4px;
+					}
+
+					> .stat-bar-container {
+						@extend .bg-tertiary;
+						width: 100%;
+						height: 10px;
+						border-radius: 5px;
+						overflow: hidden;
+						margin: 0 10px;
+
+						> .stat-bar {
+							@extend .bg-secondary;
+							height: 100%;
+							border-radius: 5px;
+						}
+					}
 				}
 			}
 		}
-	}
-
-	.stats-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		width: 400px;
-	}
-
-	.stat-item {
-		display: flex;
-		align-items: center;
-		margin-bottom: 10px;
-	}
-
-	.stat-name {
-		width: 100px;
-		text-transform: capitalize;
-		font-weight: bold;
-	}
-
-	.stat-bar-container {
-		flex: 1;
-		height: 10px;
-		background-color: #e0e0e0;
-		border-radius: 5px;
-		overflow: hidden;
-		margin: 0 10px;
-	}
-
-	.stat-bar {
-		height: 100%;
-		background-color: #4caf50; // Cambia el color según el diseño
-		border-radius: 5px;
-	}
-
-	.stat-value {
-		width: 40px;
-		text-align: right;
-		font-weight: bold;
 	}
 }
