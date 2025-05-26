@@ -6,17 +6,13 @@ const importRouter = import.meta.glob('../../domains/**/infrastructure/routing/r
 const routerDomain = await importFiles(importRouter);
 const routes = routerDomain.map((route) => route.default);
 
-console.log('Routes:', routes);
-
 const Router = () => {
 	const defaultLayout = ({ children }) => <>{children}</>;
 
 	return (
 		<Switch>
 			{routes.map((router) => {
-				console.log('Router:', router);
 				return router.router.map(({ path, page: Component, routeComponent: Route, exact = true, layout, ...rest }) => {
-					console.log('Rendering Route:', path, Component);
 					return (
 						<Route
 							key={path}
