@@ -1,15 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPokemonDetails } from '../../application/slices/pokemonDetails';
 import Spinner from '../../../../shared/presentation/components/Spinner';
 import ErrorMessage from '../../../../shared/presentation/components/ErrorMessage';
-import './PokemonDetailPage.scss'; // Para estilos
+import {
+	getpokemonDetailSelector,
+	getpokemonDetailsErrorSelector,
+	getpokemonDetailStatusSelector,
+} from '../../application/selectors/pokemonDetails';
+import { ARROW_LEFT_ICON, ARROW_RIGHT_ICON } from '../../../../shared/application/constants/icons';
+import './PokemonDetailPage.scss';
 
 const PokemonDetailPage = () => {
 	const { name } = useParams();
 	const dispatch = useDispatch();
-	const { details, status, error } = useSelector((state) => state.pokemon);
+	const details = useSelector(getpokemonDetailSelector);
+	const status = useSelector(getpokemonDetailStatusSelector);
+	const error = useSelector(getpokemonDetailsErrorSelector);
+	const [currentImg, setCurrentImg] = useState(0);
 
 	const pokemon = details[name];
 
@@ -24,18 +33,40 @@ const PokemonDetailPage = () => {
 	if (status === 'failed' && !pokemon) return <ErrorMessage message={error} />;
 	if (!pokemon) return <p>Pokémon no encontrado o cargando...</p>; // Estado intermedio o si falla la carga pero no es error general
 
+	const spriteImages = [
+		{ src: pokemon.sprites.front_default, alt: `${pokemon.name} front` },
+		{ src: pokemon.sprites.back_default, alt: `${pokemon.name} back` },
+		{ src: pokemon.sprites.front_shiny, alt: `${pokemon.name} shiny front` },
+		{ src: pokemon.sprites.back_shiny, alt: `${pokemon.name} shiny back` },
+	].filter((img) => img.src);
+
+	const handlePrev = () => {
+		setCurrentImg((prev) => (prev === 0 ? spriteImages.length - 1 : prev - 1));
+	};
+
+	const handleNext = () => {
+		setCurrentImg((prev) => (prev === spriteImages.length - 1 ? 0 : prev + 1));
+	};
+
 	return (
 		<div className="pokemon-detail-page">
 			<Link to="/" className="back-button">
-				← Volver a la lista
+				<i className={ARROW_LEFT_ICON} /> Volver a la lista
 			</Link>
-			<h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
+			<h1 className="pokemon-name">{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
 			<div className="pokemon-detail-content">
-				<div className="pokemon-images">
-					<img src={pokemon.sprites.front_default} alt={`${pokemon.name} front`} />
-					{pokemon.sprites.back_default && <img src={pokemon.sprites.back_default} alt={`${pokemon.name} back`} />}
-					{pokemon.sprites.front_shiny && <img src={pokemon.sprites.front_shiny} alt={`${pokemon.name} shiny front`} />}
-					{pokemon.sprites.back_shiny && <img src={pokemon.sprites.back_shiny} alt={`${pokemon.name} shiny back`} />}
+				<div className="pokemon-images-carousel">
+					{spriteImages.length > 0 && (
+						<div className="carousel">
+							<button onClick={handlePrev} className="carousel-btn" aria-label="Anterior">
+								{<i className={ARROW_LEFT_ICON} />}
+							</button>
+							<img src={spriteImages[currentImg].src} alt={spriteImages[currentImg].alt} className="pokemon-img" />
+							<button onClick={handleNext} className="carousel-btn" aria-label="Siguiente">
+								{<i className={ARROW_RIGHT_ICON} />}
+							</button>
+						</div>
+					)}
 				</div>
 				<div className="pokemon-info">
 					<h2>Información</h2>
@@ -63,10 +94,14 @@ const PokemonDetailPage = () => {
 						))}
 					</ul>
 					<h3>Estadísticas Base:</h3>
-					<ul>
+					<ul className="stats-list">
 						{pokemon.stats.map((statInfo) => (
-							<li key={statInfo.stat.name}>
-								{statInfo.stat.name}: {statInfo.base_stat}
+							<li key={statInfo.stat.name} className="stat-item">
+								<span className="stat-name">{statInfo.stat.name}</span>
+								<div className="stat-bar-container">
+									<div className="stat-bar" style={{ width: `${(statInfo.base_stat / 255) * 100}%` }}></div>
+								</div>
+								<span className="stat-value">{statInfo.base_stat}</span>
 							</li>
 						))}
 					</ul>

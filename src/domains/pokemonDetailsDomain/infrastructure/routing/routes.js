@@ -1,3 +1,3 @@
-export const pokemonDetailsRoute = (pokemonName = ':pokemonName') => `pokemon/${pokemonName}`;
+export const pokemonDetailsRoute = (name = ':name') => `/pokemon/${name}`;
 
 export default { pokemonDetailsRoute };
